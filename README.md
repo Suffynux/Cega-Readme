@@ -280,9 +280,9 @@ This project is made possible by:
 
 **Project Type**: Full-stack web application (Private repository)
 
-**Development Period**: [Add your timeline]
+**Development Period**: 3 Months
 
-**Role**: [Add your role - Full Stack Developer / Lead Developer / etc.]
+**Role**: Full Stack Developer
 
 This README serves as a portfolio showcase. The source code is private due to organizational policies, but the live website demonstrates all implemented features and functionalities.
 
