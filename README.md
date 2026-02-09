@@ -5,6 +5,7 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green)](https://www.mongodb.com/)
 [![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black)](https://vercel.com/)
 [![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4.0-412991)](https://openai.com/)
+[![NextAuth](https://img.shields.io/badge/NextAuth.js-JWT-purple)](https://next-auth.js.org/)
 
 **Empowering Pakistan's Gaming Industry Through Innovation**
 
@@ -35,6 +36,7 @@ Position Pakistan as a rising global hub in the gaming and animation industry, b
 ### What I Built
 A modern, scalable web platform featuring:
 - 10+ specialized application portals for different programs
+- Secure authentication and session management
 - Real-time booking systems for labs and meeting rooms
 - Automated email workflows for user communication
 - AI-powered chatbot for instant user assistance
@@ -51,6 +53,15 @@ A modern, scalable web platform featuring:
 - **Mobile-First Design** - Fully responsive across all device sizes
 - **Accessible Navigation** - Intuitive menu system with clear user journeys
 
+### Authentication & Security
+Implemented secure authentication using NextAuth.js:
+- **JWT-Based Sessions** - Stateless authentication with JSON Web Tokens
+- **Secure User Sessions** - Encrypted session management with automatic expiration
+- **Protected Routes** - Role-based access control for admin and user dashboards
+- **Password Security** - Hashed password storage with bcrypt
+- **Session Persistence** - Seamless login experience across browser sessions
+- **OAuth Integration Ready** - Extensible authentication architecture
+
 ### AI-Powered Chatbot
 Integrated intelligent assistant using OpenAI GPT-4.0:
 - **24/7 User Support** - Instant responses to user queries and guidance
@@ -65,6 +76,7 @@ Integrated intelligent assistant using OpenAI GPT-4.0:
 - **Smart Validation** - Real-time client-side and server-side validation
 - **Dynamic Form Fields** - Context-aware forms adapting to user selections
 - **Autosave Functionality** - Draft saving to prevent data loss
+- **Authenticated Submissions** - User identity verification for all applications
 
 ### Email Notification System
 Implemented comprehensive NodeMailer integration:
@@ -79,6 +91,7 @@ Implemented comprehensive NodeMailer integration:
 - **Co-Working Space Management** - Seat booking with capacity tracking
 - **Rendering Lab Reservations** - Specialized lab equipment scheduling
 - **Calendar Integration** - Visual booking calendars with conflict prevention
+- **User-Specific Bookings** - Authenticated booking history and management
 
 ### Robust Backend Architecture
 - **MongoDB Integration** - Scalable NoSQL database with 14+ specialized schemas
@@ -86,6 +99,7 @@ Implemented comprehensive NodeMailer integration:
 - **Data Security** - Encrypted storage with validation at every layer
 - **Optimized Queries** - Fast data retrieval with indexed collections
 - **OpenAI API Integration** - Seamless AI chatbot functionality with GPT-4.0
+- **NextAuth.js Integration** - Secure JWT-based authentication system
 
 ---
 
@@ -98,6 +112,7 @@ TypeScript          - Type-safe development with strict mode
 Tailwind CSS        - Utility-first styling framework
 Shadcn/ui           - Accessible, customizable component library
 React Hooks         - Modern state management and lifecycle handling
+NextAuth.js         - Authentication and session management
 ```
 
 ### Backend
@@ -107,6 +122,8 @@ MongoDB Atlas       - Cloud-hosted NoSQL database
 Mongoose            - Elegant MongoDB object modeling
 NodeMailer          - Reliable email delivery system
 OpenAI API          - GPT-4.0 integration for intelligent chatbot
+NextAuth.js         - JWT-based authentication with secure sessions
+bcrypt              - Password hashing and encryption
 ```
 
 ### DevOps & Deployment
@@ -126,14 +143,14 @@ TypeScript Config   - Strict type checking and IntelliSense
 app/
 ├── (pages)/                    # Feature-based page organization
 │   ├── about/                  # About CEGA initiative
-│   ├── admin/                  # Admin dashboard & management
+│   ├── admin/                  # Admin dashboard & management (Protected)
 │   ├── animation-screening/    # Animation portfolio submissions
 │   ├── campaign-form/          # Marketing campaign forms
 │   ├── cega-events/           # Event listings & registration
 │   ├── co-working/            # Co-working space booking
 │   ├── community-centre/      # Community resources
 │   ├── contact/               # Contact & inquiry forms
-│   ├── dashboard/             # User application dashboard
+│   ├── dashboard/             # User application dashboard (Protected)
 │   ├── game-jam/              # Game jam registration
 │   ├── incubation/            # Startup incubation program
 │   ├── knowledge-hub/         # Educational resources
@@ -147,26 +164,34 @@ app/
 │   └── training/              # Training program registration
 │
 ├── api/                       # RESTful API routes
+│   ├── auth/                  # NextAuth.js authentication routes
+│   │   └── [...nextauth]/     # NextAuth configuration & handlers
 │   ├── chatbot/               # OpenAI GPT-4.0 chatbot endpoint
 │   └── ...                    # Other API routes
 ├── models/                    # Mongoose database schemas
+│   ├── User.ts                # User authentication model
+│   └── ...                    # Other data models
 ├── layout.tsx                 # Root layout & metadata
 └── page.tsx                   # Home page
 
 components/
 ├── ui/                        # Reusable UI components
-└── chatbot/                   # AI chatbot components
+├── chatbot/                   # AI chatbot components
+└── auth/                      # Authentication components
 
 lib/
+├── auth.ts                    # NextAuth configuration
 ├── openai.ts                  # OpenAI API configuration
 └── ...                        # Other utility functions
 
+middleware.ts                  # Route protection middleware
 hooks/                         # Custom React hooks
 data/                          # Static data & constants
 managed_context/               # Global state management
 ```
 
-### Data Models (14 Specialized Schemas)
+### Data Models (15+ Specialized Schemas)
+- `User` - User authentication and profile data
 - `animationScreening` - Animation portfolio submissions
 - `campaignForm` - Marketing campaign data
 - `characters` - Character design submissions
@@ -186,37 +211,54 @@ managed_context/               # Global state management
 
 ## Core Functionalities
 
-### 1. AI Chatbot Assistant
+### 1. Authentication & Authorization System
+- NextAuth.js integration with JWT strategy
+- Secure user registration and login
+- Session management with automatic token refresh
+- Role-based access control (Admin, User)
+- Protected API routes and pages
+- Password encryption and secure storage
+
+### 2. AI Chatbot Assistant
 - OpenAI GPT-4.0 powered conversational interface
 - Context-aware responses about CEGA programs and services
 - Real-time query resolution and user guidance
 - Seamless integration with website navigation
 - Conversation history and session management
 
-### 2. Application Management System
+### 3. Application Management System
 - Multi-program application tracking
 - Status workflow automation
 - Document upload handling
 - Application review interface
+- User-specific application history
 
-### 3. Resource Booking Platform
+### 4. Resource Booking Platform
 - Real-time availability checking
 - Automated confirmation emails
 - Booking conflict prevention
 - Usage analytics and reporting
+- User booking history and management
 
-### 4. Email Automation
+### 5. Email Automation
 - Template-based email system
 - Scheduled notification delivery
 - Multi-recipient support
 - HTML email rendering
 
-### 5. Admin Dashboard
+### 6. Admin Dashboard
 - Centralized application management
 - Real-time statistics and metrics
 - Bulk action operations
 - Export functionality
+- User management interface
 
+### 7. User Dashboard
+- Application status tracking
+- Booking history
+- Profile management
+- Notification center
+- Personalized user experience
 
 ---
 
@@ -229,12 +271,14 @@ managed_context/               # Global state management
 - **Global partnerships** with Tencent, Huawei, NetEase, and more
 
 ### Technical Achievements
+- **Secure authentication** protecting user data and privacy
 - **AI-powered support** reducing response time by 95%
-- **14 integrated application portals** serving different user segments
+- **14+ integrated application portals** serving different user segments
 - **99.9% uptime** with Vercel edge deployment
 - **Sub-second page loads** with optimized Next.js architecture
 - **Automated workflow** reducing manual processing by 80%
 - **Intelligent chatbot** handling 1000+ queries monthly
+- **JWT-based sessions** ensuring scalable and secure authentication
 
 ---
 
@@ -244,10 +288,12 @@ managed_context/               # Global state management
 
 Explore the platform to see:
 - Interactive landing pages
+- Secure user authentication and registration
 - AI chatbot in action
 - Application forms with real-time validation
 - Booking systems in action
 - Responsive design across devices
+- Protected user and admin dashboards
 
 ---
 
@@ -268,6 +314,7 @@ This project is made possible by:
 - **Global & Local Partners** - Industry collaboration
 - **Pakistan's Gaming Community** - Inspiration and feedback
 - **OpenAI** - AI technology powering the intelligent chatbot
+- **NextAuth.js** - Secure authentication solution
 
 ---
 
@@ -275,9 +322,9 @@ This project is made possible by:
 
 **Project Type**: Full-stack web application (Private repository)
 
-**Development Period**: 3 Months
+**Development Period**: [Add your timeline]
 
-**Role**: Full Stack Developer
+**Role**: [Add your role - Full Stack Developer / Lead Developer / etc.]
 
 This README serves as a portfolio showcase. The source code is private due to organizational policies, but the live website demonstrates all implemented features and functionalities.
 
@@ -292,5 +339,6 @@ This README serves as a portfolio showcase. The source code is private due to or
 [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/)
+[![NextAuth](https://img.shields.io/badge/NextAuth.js-black?style=for-the-badge&logo=next.js&logoColor=white)](https://next-auth.js.org/)
 
 </div>
