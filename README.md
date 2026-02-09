@@ -217,11 +217,6 @@ managed_context/               # Global state management
 - Bulk action operations
 - Export functionality
 
-### 6. User Dashboard
-- Application status tracking
-- Booking history
-- Profile management
-- Notification center
 
 ---
 
